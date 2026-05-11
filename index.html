@@ -320,7 +320,7 @@ async function postData(payload) {
 }
 
 async function checkAndStart() {
-  //studentName = document.getElementById('inp-name').value.trim();
+  studentName = document.getElementById('inp-name').value.trim();
   rollNo = document.getElementById('inp-roll').value.trim();
   studentKey = rollNo.toLowerCase().replace(/\s+/g, '_');
   document.getElementById('start-error').style.display = 'none';

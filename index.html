@@ -95,25 +95,25 @@
   <div id="s-start" class="screen active">
     <div class="top-badge"><div class="dot-pulse"></div> Secure Quiz System</div>
     <div class="card">
-      <div class="card-title">Quiz — General Knowledge</div>
-      <div class="card-sub">Apna naam aur roll number daal kar quiz shuru karo. Yeh quiz sirf ek baar di ja sakti hai.</div>
+      <div class="card-title">Quiz — Computer Architecture</div>
+      <div class="card-sub">Add your name and roll no to start your Quiz-- Yeh quiz sirf ek baar dia ja sakti hai.</div>
       <div class="rules">
-        <div class="rule"><span class="rule-icon">⏱</span> Har sawaal ka 15 second ka timer hai</div>
-        <div class="rule"><span class="rule-icon">🔀</span> Har student ke liye questions ka order alag hoga</div>
-        <div class="rule"><span class="rule-icon">🚫</span> Tab ya window switch hone par quiz khud submit hogi</div>
-        <div class="rule"><span class="rule-icon">🔒</span> Back button disable hai</div>
-        <div class="rule"><span class="rule-icon">📋</span> Ek dafa submit ke baad dobara attempt nahi hogi</div>
+        <div class="rule"><span class="rule-icon">⏱</span> Every Question has 30 sec Timer</div>
+        <div class="rule"><span class="rule-icon">🔀</span> Every Student will get different questions</div>
+        <div class="rule"><span class="rule-icon">🚫</span> On switching tab or window Quiz will get automatically submit </div>
+        <div class="rule"><span class="rule-icon">🔒</span> Back button is disable</div>
+        <div class="rule"><span class="rule-icon">📋</span> There will be no second attempt!!</div>
       </div>
       <div class="field">
-        <label>Apna Naam</label>
-        <input type="text" id="inp-name" placeholder="Naam likho..." maxlength="50" />
+        <label>Name</label>
+        <input type="text" id="inp-name" placeholder="Enter your Name..." maxlength="50" />
       </div>
       <div class="field">
         <label>Roll Number</label>
-        <input type="text" id="inp-roll" placeholder="Roll number likho..." maxlength="20" />
+        <input type="text" id="inp-roll" placeholder="Enter your Roll no..." maxlength="20" />
       </div>
       <div id="start-error" style="font-size:13px;color:var(--danger);margin-bottom:10px;display:none;"></div>
-      <button class="btn btn-primary" id="start-btn" onclick="checkAndStart()" disabled>Quiz Shuru Karo →</button>
+      <button class="btn btn-primary" id="start-btn" onclick="checkAndStart()" disabled>Start Quiz →</button>
     </div>
   </div>
 
@@ -135,11 +135,11 @@
 
   <div id="s-quiz" class="screen">
     <div class="quiz-header">
-      <div class="q-info" id="q-counter">Sawaal 1 / 10</div>
+      <div class="q-info" id="q-counter">Question 1 / 20</div>
       <div class="q-student" id="q-student"></div>
       <div class="timer-wrap">
         <span style="font-size:13px;color:var(--muted)">⏱</span>
-        <span class="timer-num ok" id="t-num">15</span>
+        <span class="timer-num ok" id="t-num">30</span>
       </div>
     </div>
     <div class="timer-track"><div class="timer-fill" id="t-bar" style="width:100%;background:var(--accent)"></div></div>
@@ -147,24 +147,24 @@
     <div class="card">
       <div class="q-text" id="q-text"></div>
       <div id="opts"></div>
-      <button class="btn-next" id="next-btn" onclick="nextQ()" disabled>Agla Sawaal →</button>
+      <button class="btn-next" id="next-btn" onclick="nextQ()" disabled>Next →</button>
     </div>
   </div>
 
   <div id="s-result" class="screen">
     <div class="card">
-      <div id="auto-banner" style="display:none" class="auto-banner">⚠️ Tab switch ki wajah se quiz automatically submit ho gayi.</div>
+      <div id="auto-banner" style="display:none" class="auto-banner">⚠️ Tab switch ki wajah se quiz automatically submit ho gaya.</div>
       <div style="text-align:center;margin-bottom:1.25rem;">
         <div class="score-circle">
-          <div class="score-num" id="r-score">0/10</div>
+          <div class="score-num" id="r-score">0/20</div>
           <div class="score-label">Score</div>
         </div>
         <div style="font-size:18px;font-weight:600" id="r-name"></div>
         <div style="font-size:13px;color:var(--muted)" id="r-pct"></div>
       </div>
       <div class="stats-row">
-        <div class="stat correct"><div class="stat-num" id="r-correct">0</div><div class="stat-lbl">Sahi</div></div>
-        <div class="stat wrong"><div class="stat-num" id="r-wrong">0</div><div class="stat-lbl">Galat</div></div>
+        <div class="stat correct"><div class="stat-num" id="r-correct">0</div><div class="stat-lbl">Correct</div></div>
+        <div class="stat wrong"><div class="stat-num" id="r-wrong">0</div><div class="stat-lbl">Wrong</div></div>
         <div class="stat skip"><div class="stat-num" id="r-skip">0</div><div class="stat-lbl">Skip</div></div>
       </div>
       <div class="saving-msg" id="saving-msg" style="display:none"><span class="spinner"></span> Record Google Sheet mein save ho raha hai...</div>
@@ -177,9 +177,9 @@
   <div class="overlay-box">
     <div class="overlay-icon">⚠️</div>
     <h2>Tab Switch Pakra Gaya!</h2>
-    <p>Aapne quiz ke dauran tab ya window switch ki. Quiz ab automatically submit ho rahi hai.</p>
+    <p>Aapne quiz ke dauran tab ya window switch ki. Quiz ab automatically submit ho raha hai.</p>
     <div class="overlay-count" id="o-countdown">3</div>
-    <p style="font-size:12px;">Submit ho rahi hai...</p>
+    <p style="font-size:12px;">Submit ho raha hai...</p>
   </div>
 </div>
 
@@ -320,7 +320,7 @@ async function postData(payload) {
 }
 
 async function checkAndStart() {
-  studentName = document.getElementById('inp-name').value.trim();
+  //studentName = document.getElementById('inp-name').value.trim();
   rollNo = document.getElementById('inp-roll').value.trim();
   studentKey = rollNo.toLowerCase().replace(/\s+/g, '_');
   document.getElementById('start-error').style.display = 'none';

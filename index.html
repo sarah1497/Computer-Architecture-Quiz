@@ -96,7 +96,7 @@
     <div class="top-badge"><div class="dot-pulse"></div> Secure Quiz System</div>
     <div class="card">
       <div class="card-title">Quiz — DSA</div>
-      <div class="card-sub">Add your name and roll no to start your Quiz-- Yeh quiz sirf ek baar dia ja sakti hai.</div>
+      <div class="card-sub">Add your name and roll no to start your Quiz-- Onlu 1 attempt.</div>
       <div class="rules">
         <div class="rule"><span class="rule-icon">⏱</span> Every Question has 30 sec Timer</div>
         <div class="rule"><span class="rule-icon">🔀</span> Every Student will get different questions</div>
@@ -121,7 +121,7 @@
     <div class="card status-card">
       <div class="status-icon">🔒</div>
       <h2>Already Submitted!</h2>
-      <p id="already-msg">Aapka quiz record pehle se submit hai. Dobara attempt allowed nahi hai.</p>
+      <p id="already-msg">You already attempt a quiz. No second attempts.</p>
     </div>
   </div>
 
@@ -129,7 +129,7 @@
     <div class="card status-card">
       <div class="status-icon">🔍</div>
       <h2>Checking...</h2>
-      <p><span class="spinner"></span> Aapka record check ho raha hai, ruko...</p>
+      <p><span class="spinner"></span> Verifying your record, wait...</p>
     </div>
   </div>
 
@@ -153,7 +153,7 @@
 
   <div id="s-result" class="screen">
     <div class="card">
-      <div id="auto-banner" style="display:none" class="auto-banner">⚠️ Tab switch ki wajah se quiz automatically submit ho gaya.</div>
+      <div id="auto-banner" style="display:none" class="auto-banner">⚠️ Your quiz is being submitted due to tab switch.</div>
       <div style="text-align:center;margin-bottom:1.25rem;">
         <div class="score-circle">
           <div class="score-num" id="r-score">0/20</div>
@@ -167,7 +167,7 @@
         <div class="stat wrong"><div class="stat-num" id="r-wrong">0</div><div class="stat-lbl">Wrong</div></div>
         <div class="stat skip"><div class="stat-num" id="r-skip">0</div><div class="stat-lbl">Skip</div></div>
       </div>
-      <div class="saving-msg" id="saving-msg" style="display:none"><span class="spinner"></span> Record Google Sheet mein save ho raha hai...</div>
+      <div class="saving-msg" id="saving-msg" style="display:none"><span class="spinner"></span> saving your record...</div>
     </div>
   </div>
 
@@ -176,10 +176,10 @@
 <div class="overlay" id="tab-overlay">
   <div class="overlay-box">
     <div class="overlay-icon">⚠️</div>
-    <h2>Tab Switch Pakra Gaya!</h2>
-    <p>Aapne quiz ke dauran tab ya window switch ki. Quiz ab automatically submit ho raha hai.</p>
+    <h2>Tab switched caught!</h2>
+    <p>while attempting your quiz you switch tabs. Record submitted automatically.</p>
     <div class="overlay-count" id="o-countdown">3</div>
-    <p style="font-size:12px;">Submit ho raha hai...</p>
+    <p style="font-size:12px;">Submitting...</p>
   </div>
 </div>
 
@@ -196,27 +196,28 @@ const LABELS = ['A','B','C','D'];
 // ans: 0=A, 1=B, 2=C, 3=D
 // ══════════════════════════════════════════════
 const ALL_QUESTIONS = [
-  { q: "Which data type in Dart is used to store decimal (floating-point) numbers?", opts: ["int", "float", "double", "num"], ans: 2 },
-  { q: "What does the 'var' keyword do in Dart?", opts: ["Declares a variable that can change its type at runtime", "Infers the type at compile time and keeps it fixed", "Declares a dynamic variable", "Only works with String types"], ans: 1 },
-  { q: "Which operator performs integer division in Dart (discards the remainder)?", opts: ["/", "%", "~/", "//"], ans: 2 },
-  { q: "What will this expression return?  (8 > 3) ? 'Yes' : 'No'", opts: ["No", "true", "Yes", "Error"], ans: 2 },
-  { q: "Which library must be imported to read console input in Dart?", opts: ["dart:math", "dart:core", "dart:io", "dart:convert"], ans: 2 },
-  { q: "How do you correctly convert a String input from the user into an integer?", opts: ["stdin.toInt()", "int(input)", "Integer.parseInt(input)", "int.parse(stdin.readLineSync()!)"], ans: 3 },
-  { q: "Which comment type is used for API documentation in Dart?", opts: ["// comment", "/* comment */", "/// comment", "# comment"], ans: 2 },
-  { q: "When does the 'default' case in a switch statement execute?", opts: ["Always first", "When the first case matches", "When no case matches the variable", "When the variable is null"], ans: 2 },
-  { q: "Which of the following CANNOT be used directly inside a switch statement in Dart?", opts: ["String values", "int values", "Relational operators like > or <", "Constant values"], ans: 2 },
-  { q: "What is the key difference between a while loop and a do-while loop?", opts: ["while is faster", "do-while always executes the body at least once", "while always runs at least once", "There is no difference"], ans: 1 },
-  { q: "Which loop type is best when the number of iterations is known in advance?", opts: ["while", "do-while", "for", "forEach"], ans: 2 },
-  { q: "Which method adds an element to the end of a Dart List?", opts: ["list.append(x)", "list.push(x)", "list.add(x)", "list.addLast(x)"], ans: 2 },
-  { q: "What is the fundamental difference between a List and a Map in Dart?", opts: ["Maps are sorted, Lists are not", "Lists are accessed by index; Maps are accessed by key", "Maps only store Strings", "Lists store key-value pairs"], ans: 1 },
-  { q: "Which method is used to iterate over all entries in a Dart Map?", opts: ["map.loop((k,v) => ...)", "map.forEach((k,v) => ...)", "map.each((k,v) => ...)", "map.iterate()"], ans: 1 },
-  { q: "What type of function is this?   int square(int x) => x * x;", opts: ["Void function", "Recursive function", "Arrow function", "Anonymous function"], ans: 2 },
-  { q: "What return type should a function have if it does not return any value?", opts: ["null", "empty", "void", "none"], ans: 2 },
-  { q: "What is the difference between StatelessWidget and StatefulWidget in Flutter?", opts: ["StatelessWidget is slower", "StatelessWidget UI cannot change; StatefulWidget can update at runtime", "StatefulWidget is only for images", "They are the same thing"], ans: 1 },
-  { q: "Which file is the entry point of a Flutter application?", opts: ["app.dart", "index.dart", "lib/main.dart", "pubspec.yaml"], ans: 2 },
-  { q: "Which Flutter widget arranges its children vertically (top to bottom)?", opts: ["Row", "Stack", "Container", "Column"], ans: 3 },
-  { q: "Which Flutter widget shows a brief message at the bottom of the screen when a button is pressed?", opts: ["Toast", "AlertDialog", "SnackBar", "Popup"], ans: 2 },
+  { q: "Which data structure is primarily used to implement BFS?", opts: ["stack","Queue","List","Dictionary"], ans: 1 },
+  { q: "BFS traversal of a tree is also known as:", opts: ["Pre-order traversal","In-order traversal","Post-order traversal","Level-order traversal"], ans: 3 },
+  { q: "Which data structure is primarily used to implement DFS iteratively?", opts: ["stack","Queue","List","Dictionary"], ans: 0 },
+  { q: "Which of the following is NOT a valid DFS traversal order for a binary tree?", opts: ["Pre-order traversal","In-order traversal","Post-order traversal","Level-order traversal"], ans: 3 },
+  { q: "After one full pass of Bubble Sort on array [5, 1, 4, 2, 8], what is the array?", opts: ["[1, 4, 2, 5, 8]","[1, 5, 4, 2, 8]","[1, 4, 2, 8, 5]","[1, 2, 4, 5, 8]"], ans: 0 },
+  { q: "Insertion Sort works by:", opts: ["Repeatedly swapping adjacent elements","Building the sorted array one element at a time","Partitioning around a pivot","Merging two sorted halves"], ans: 0 },
+  { q: "What does Selection Sort do in each pass?", opts: ["Swaps adjacent elements","Finds minimum and places it at the beginning","Inserts element into correct position","Partitions around a pivot"], ans: 1 },
+  { q: "Merge Sort is based on which paradigm?", opts: ["Greedy","Dynamic Programming","Divide and Conquer","Backtracking"], ans: 2 },
+  { q: "Which pivot selection strategy gives the best average performance?", opts: ["First element","Last element","Middle element","Random element"], ans: 3 },
+  { q: "In a singly linked list, each node contains:", opts: ["Data and previous pointer","Data and next pointer","Data only","Previous and next pointers"], ans: 3 },
+  { q: "A doubly linked list node contains:", opts: ["Data and next pointer","Data and previous pointer","Data, next, and previous pointers","Data only"], ans: 2 },
+  { q: "In a circular singly linked list, the last node points to:", opts: ["NULL","The first node","Itself","The second node"], ans: 1 },
+  { q: "In a circular doubly linked list, the head's previous pointer points to:", opts: ["NULL","The Last node","Itself","The second node"], ans: 1 },
+  { q: "Stack follows which principle?", opts: ["FIFO (First In First Out)","LIFO (Last In First Out)","FILO (First In Last Out) — same as LIFO","Both B and C"], ans: 3 },
+  { q: "Which operation removes the top element from a stack?", opts: ["Push","Pop","Peek","Top"], ans: 1 },
+  { q: "A stack can be implemented using:", opts: ["Array only","Linked list only","Both array and linked list","Neither"], ans: 2 },
+  { q: "Queue follows which principle?", opts: ["LIFO","FILO","FIFO","LILO"], ans: 2},
+  { q: "Inorder traversal is ?", opts: ["Left->Root->Right","Right->Left->Root","Root->Left->Right","Left->Right->Root"], ans: 0 },
+  { q: "Preorder Traversal is?", opts: ["Left->Root->Right","Right->Left->Root","Root->Left->Right","Left->Right->Root"], ans: 2 },
+  { q: "Post Order traversal is?", opts: ["Left->Root->Right","Right->Left->Root","Root->Left->Right","Left->Right->Root"], ans: 3 },
 ];
+
 // ══════════════════════════════════════════════
 function shuffle(arr) {
   const a = [...arr];
@@ -319,7 +320,7 @@ async function postData(payload) {
 }
 
 async function checkAndStart() {
-  studentName = document.getElementById('inp-name').value.trim();
+  //studentName = document.getElementById('inp-name').value.trim();
   rollNo = document.getElementById('inp-roll').value.trim();
   studentKey = rollNo.toLowerCase().replace(/\s+/g, '_');
   document.getElementById('start-error').style.display = 'none';

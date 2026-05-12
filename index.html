@@ -96,7 +96,7 @@
     <div class="top-badge"><div class="dot-pulse"></div> Secure Quiz System</div>
     <div class="card">
       <div class="card-title">Quiz — DSA</div>
-      <div class="card-sub">Add your name and roll no to start your Quiz-- Yeh quiz sirf ek baar dia ja sakti hai.</div>
+      <div class="card-sub">Add your name and roll no to start your Quiz-- Onlu 1 attempt.</div>
       <div class="rules">
         <div class="rule"><span class="rule-icon">⏱</span> Every Question has 30 sec Timer</div>
         <div class="rule"><span class="rule-icon">🔀</span> Every Student will get different questions</div>
@@ -167,7 +167,7 @@
         <div class="stat wrong"><div class="stat-num" id="r-wrong">0</div><div class="stat-lbl">Wrong</div></div>
         <div class="stat skip"><div class="stat-num" id="r-skip">0</div><div class="stat-lbl">Skip</div></div>
       </div>
-      <div class="saving-msg" id="saving-msg" style="display:none"><span class="spinner"></span> Record Google Sheet mein save ho raha hai...</div>
+      <div class="saving-msg" id="saving-msg" style="display:none"><span class="spinner"></span> saving your record...</div>
     </div>
   </div>
 
@@ -212,7 +212,7 @@ const ALL_QUESTIONS = [
   { q: "Stack follows which principle?", opts: ["FIFO (First In First Out)","LIFO (Last In First Out)","FILO (First In Last Out) — same as LIFO","Both B and C"], ans: 3 },
   { q: "Which operation removes the top element from a stack?", opts: ["Push","Pop","Peek","Top"], ans: 1 },
   { q: "A stack can be implemented using:", opts: ["Array only","Linked list only","Both array and linked list","Neither"], ans: 2 },
-  { q: "Queue follows which principle?", opts: ["LIFO","FILO","FIFO","LILO"], ans: 2, 3 },
+  { q: "Queue follows which principle?", opts: ["LIFO","FILO","FIFO","LILO"], ans: 2},
   { q: "Inorder traversal is ?", opts: ["Left->Root->Right","Right->Left->Root","Root->Left->Right","Left->Right->Root"], ans: 0 },
   { q: "Preorder Traversal is?", opts: ["Left->Root->Right","Right->Left->Root","Root->Left->Right","Left->Right->Root"], ans: 2 },
   { q: "Post Order traversal is?", opts: ["Left->Root->Right","Right->Left->Root","Root->Left->Right","Left->Right->Root"], ans: 3 },
